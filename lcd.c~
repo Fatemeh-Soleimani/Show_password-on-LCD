@@ -2,7 +2,7 @@
 This program was created by the
 CodeWizardAVR V3.12 Advanced
 Automatic Program Generator
-© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+Â© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
 http://www.hpinfotech.com
 
 Project : 
@@ -46,10 +46,10 @@ void main(void)
 
 // Input/Output Ports initialization
 // Port A initialization
-// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
-DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<<DDA1) | (0<<DDA0);
-// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T 
-PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
+// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=Out Bit2=Out Bit1=Out Bit0=Out 
+DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (1<<DDA3) | (1<<DDA2) | (1<<DDA1) | (1<<DDA0);
+// State: Bit7=P Bit6=P Bit5=P Bit4=P Bit3=0 Bit2=0 Bit1=0 Bit0=0 
+PORTA=(1<<PORTA7) | (1<<PORTA6) | (1<<PORTA5) | (1<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
 
 // Port B initialization
 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
@@ -158,72 +158,102 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 // D7 - PORTD Bit 7
 // Characters/line: 16
 lcd_init(16);
+
 while (1)
       {
      int a=100;
      a=keypad();
-    // input_password=input_password+a;
      lcd(a);
-     sprintf(temp,"%d",a);
-     strcat(input_password,temp);
-     delay_ms(25);
      
-     if(input_password==password){  
+     //check if pin is correct
+     if(strcmp(input_password,password)==0){
+        lcd_clear();  
         lcd_puts("password is correct");
-        input_password="";
-        delay_ms(100);
+        strcpy(input_password,"");
+        delay_ms(5000);
      }                                  
-     
+       
+     delay_ms(25);
       } 
                 
 }
 
- void lcd(int c){
+ void lcd(int c){ 
+ 
         if(c<10 && c!=100){
         sprintf(str,"%d",c);
+        strcat(input_password,str);
         lcd_puts(str);
         i++; 
         lcd_gotoxy(i,j);
         }               
-        if(c>=10 && c!=100){
+        if(c>=10 && c!=14 && c!=15 && c!=100){
             switch(c)
             {
                 case 10:
                 lcd_putsf("A");
+                strcat(input_password,"A");
                 i++;
                 lcd_gotoxy(i,j);
                 break;
                 
                 case 11:
                 lcd_putsf("B");
+                strcat(input_password,"B");
                 i++;
                 lcd_gotoxy(i,j);
                 break;           
                 
                 case 12:
                 lcd_putsf("C");
+                strcat(input_password,"C");
                 i++;
                 lcd_gotoxy(i,j);
                 break;
                 
                 case 13:
                 lcd_putsf("D");
+                strcat(input_password,"D");
                 i++;
                 lcd_gotoxy(i,j);
                 break;
                 
-                case 14:
-                lcd_putsf("E");
-                i++;
-                lcd_gotoxy(i,j);
-                break;
+                //case 14:
+                //lcd_putsf("E");
+                //i++;
+                //lcd_gotoxy(i,j);
+                //break;
                 
-                case 15:
-                lcd_putsf("F");
-                i++;
-                lcd_gotoxy(i,j);
-                break;
+                //case 15:
+                //lcd_putsf("F");
+                //i++;
+                //lcd_gotoxy(i,j);
+                //break;
             }
+        }
+        
+        //back
+        if(c==14){
+        int len=strlen(input_password); 
+        len--;
+        input_password[len]='\0';
+        lcd_clear();
+        lcd_gotoxy(0,0);
+        lcd_puts(input_password);
+        
+        i=len%16;
+        j=(len/16)%2;
+        
+        lcd_gotoxy(i,j);
+        }
+        
+        //lock
+        if(c==15){
+        i=0;
+        j=0;
+        lcd_clear();
+        lcd_gotoxy(i,j);
+        strcpy(input_password,"");      
         }
         
         if(i==16 && j==0){
@@ -246,8 +276,8 @@ int keypad(void){
     PORTA.1=1;
     PORTA.0=1;
     //row 4 ->0 
-    if(PINA.4==0){
-        b=0;
+    if(PINA.4==0){ 
+        b=15;
     } 
     //row 3 ->7       
     if(PINA.5==0){
@@ -270,7 +300,7 @@ int keypad(void){
     PORTA.0=1;
     //row 4 ->F 
     if(PINA.4==0){
-        b=15;
+        b=0;
     } 
     //row 3 ->8       
     if(PINA.5==0){
@@ -330,6 +360,8 @@ int keypad(void){
     //row1-> A 
     if(PINA.7==0){
         b=10;
-    }     
+    }
+      
+    return b;
 }
 

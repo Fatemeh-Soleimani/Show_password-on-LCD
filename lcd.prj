@@ -118,9 +118,9 @@ DebugBootLoader=0
 WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
-LinkageInformationPresent=0
-COFFileTimeStamp=-1
-Build=1
+LinkageInformationPresent=1
+COFFileTimeStamp=1446316923
+Build=3
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -222,7 +222,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=1
+Build=3
 [DefinedSymbols]
 Count=0
 [StartUp]
@@ -318,9 +318,6 @@ PreserveEEPROM=0
 VerifyProgramming=1
 ProgrammingCounter=0
 RunUserProg=0
-[HeadersList]
-Files=1
-F1=D:\IUT\5\micro\project\lcd.c
 [BuildInfoCompiler]
 L1=Build configuration: Debug
 L2=Chip: ATmega16
@@ -338,27 +335,46 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 1
-L18=11289 line(s) compiled
+L17=Build: 3
+L18=11320 line(s) compiled
 L19=No errors
-L20=2 warning(s)
+L20=No warnings
 L21=
 L22=Bit variables size: 0 byte(s)
 L23=
 L24=Data Stack area: 0x60 to 0x15F
 L25=Data Stack size: 256 byte(s)
-L26=Estimated Data Stack usage: 0 byte(s)
+L26=Estimated Data Stack usage: 42 byte(s)
 L27=
-L28=RAM Global variables size: 0 byte(s)
-L29=
-L30=Hardware Stack area: 0x160 to 0x45F
-L31=Hardware Stack size: 768 byte(s)
-L32=
-L33=Heap size: 0 byte(s)
-L34=
-Lines=34
+L28=RAM Global variables area: 0x160 to 0x1C7
+L29=RAM Global variables size: 104 byte(s)
+L30=
+L31=Hardware Stack area: 0x1C8 to 0x45F
+L32=Hardware Stack size: 664 byte(s)
+L33=
+L34=Heap size: 0 byte(s)
+Lines=38
+L35=
+L36=EEPROM usage: 0 byte(s), 0.0% of EEPROM
+L37=Program size: 1355 words (2710 bytes), 16.5% of FLASH
+L38=56 words (112 bytes), 4.0% reduced by Code Compression
 [BuildInfoAssembler]
-Lines=0
+Lines=12
+L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
+L2=Copyright (C) 1995-2008 ATMEL Corporation
+L3=
+L4=D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\List\lcd.asm(3062): No EEPROM data, deleting D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\Exe\lcd.eep
+L5=
+L6=ATmega16 memory use summary [bytes]:
+L7=Segment   Begin    End      Code   Data   Used    Size   Use%
+L8=---------------------------------------------------------------
+L9=[.cseg] 0x000000 0x000a96   2586    124   2710   16384  16.5%
+L10=[.dseg] 0x000060 0x0001c8      0    104    104    1024  10.2%
+L11=[.eseg] 0x000000 0x000000      0      0      0     512   0.0%
+L12=
+[HeadersList]
+Files=1
+F1=D:\courses\university\term 5\micro\project\Show_password-on-LCD\lcd.c
 [Header1]
 Files=8
 F1=C:\cvavr\inc\mega16.h

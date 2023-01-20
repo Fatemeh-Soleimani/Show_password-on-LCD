@@ -36,7 +36,6 @@ void lcd(int c);
 int i=0;
 int j=0;
 char str[10];
-char temp [10];
 char input_password[30]="";
 char password[30]="1234AB";
 
@@ -163,68 +162,97 @@ while (1)
       {
      int a=100;
      a=keypad();
-    // input_password=input_password+a;
      lcd(a);
-     sprintf(temp,"%d",a);
-     strcat(input_password,temp);
-     delay_ms(25);
      
-     if(input_password==password){  
+     //check if pin is correct
+     if(strcmp(input_password,password)==0){
+        lcd_clear();  
         lcd_puts("password is correct");
         strcpy(input_password,"");
-        delay_ms(100);
+        delay_ms(5000);
      }                                  
-     
+       
+     delay_ms(25);
       } 
                 
 }
 
- void lcd(int c){
+ void lcd(int c){ 
+ 
         if(c<10 && c!=100){
         sprintf(str,"%d",c);
+        strcat(input_password,str);
         lcd_puts(str);
         i++; 
         lcd_gotoxy(i,j);
         }               
-        if(c>=10 && c!=100){
+        if(c>=10 && c!=14 && c!=15 && c!=100){
             switch(c)
             {
                 case 10:
                 lcd_putsf("A");
+                strcat(input_password,"A");
                 i++;
                 lcd_gotoxy(i,j);
                 break;
                 
                 case 11:
                 lcd_putsf("B");
+                strcat(input_password,"B");
                 i++;
                 lcd_gotoxy(i,j);
                 break;           
                 
                 case 12:
                 lcd_putsf("C");
+                strcat(input_password,"C");
                 i++;
                 lcd_gotoxy(i,j);
                 break;
                 
                 case 13:
                 lcd_putsf("D");
+                strcat(input_password,"D");
                 i++;
                 lcd_gotoxy(i,j);
                 break;
                 
-                case 14:
-                lcd_putsf("E");
-                i++;
-                lcd_gotoxy(i,j);
-                break;
+                //case 14:
+                //lcd_putsf("E");
+                //i++;
+                //lcd_gotoxy(i,j);
+                //break;
                 
-                case 15:
-                lcd_putsf("F");
-                i++;
-                lcd_gotoxy(i,j);
-                break;
+                //case 15:
+                //lcd_putsf("F");
+                //i++;
+                //lcd_gotoxy(i,j);
+                //break;
             }
+        }
+        
+        //back
+        if(c==14){
+        int len=strlen(input_password); 
+        len--;
+        input_password[len]='\0';
+        lcd_clear();
+        lcd_gotoxy(0,0);
+        lcd_puts(input_password);
+        
+        i=len%16;
+        j=(len/16)%2;
+        
+        lcd_gotoxy(i,j);
+        }
+        
+        //lock
+        if(c==15){
+        i=0;
+        j=0;
+        lcd_clear();
+        lcd_gotoxy(i,j);
+        strcpy(input_password,"");      
         }
         
         if(i==16 && j==0){
@@ -247,8 +275,8 @@ int keypad(void){
     PORTA.1=1;
     PORTA.0=1;
     //row 4 ->0 
-    if(PINA.4==0){
-        b=0;
+    if(PINA.4==0){ 
+        b=15;
     } 
     //row 3 ->7       
     if(PINA.5==0){
@@ -271,7 +299,7 @@ int keypad(void){
     PORTA.0=1;
     //row 4 ->F 
     if(PINA.4==0){
-        b=15;
+        b=0;
     } 
     //row 3 ->8       
     if(PINA.5==0){

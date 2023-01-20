@@ -331,6 +331,8 @@ int keypad(void){
     //row1-> A 
     if(PINA.7==0){
         b=10;
-    }     
+    }
+      
+    return b;
 }
 

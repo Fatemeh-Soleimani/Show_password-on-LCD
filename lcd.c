@@ -172,7 +172,7 @@ while (1)
         delay_ms(5000);
      }                                  
        
-     delay_ms(25);
+     delay_ms(200);
       } 
                 
 }

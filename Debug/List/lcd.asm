@@ -1520,9 +1520,9 @@ _0x4:
 	CALL _delay_ms
 ; 0000 00AD      }
 ; 0000 00AE 
-; 0000 00AF      delay_ms(25);
+; 0000 00AF      delay_ms(200);
 _0x7:
-	LDI  R26,LOW(25)
+	LDI  R26,LOW(200)
 	LDI  R27,0
 	CALL _delay_ms
 ; 0000 00B0       }

@@ -299,7 +299,7 @@
 ;PCODE: $0000006E VOL: 0
 ; 0000 00AD      }
 ; 0000 00AE 
-; 0000 00AF      delay_ms(25);
+; 0000 00AF      delay_ms(200);
 ;PCODE: $0000006F VOL: 0
 ;PCODE: $00000070 VOL: 0
 ;PCODE: $00000071 VOL: 0

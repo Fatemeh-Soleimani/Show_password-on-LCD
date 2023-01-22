@@ -119,8 +119,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1446316923
-Build=3
+COFFileTimeStamp=1446425300
+Build=4
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -222,7 +222,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=3
+Build=4
 [DefinedSymbols]
 Count=0
 [StartUp]
@@ -335,7 +335,7 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 3
+L17=Build: 4
 L18=11320 line(s) compiled
 L19=No errors
 L20=No warnings

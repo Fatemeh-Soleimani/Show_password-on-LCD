@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\List\lcd.asm Sat Jan 21 01:27:53 2023
+AVRASM ver. 2.1.30  D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\List\lcd.asm Sun Jan 22 22:22:38 2023
 
 D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\List\lcd.asm(1088): warning: Register r4 already defined by the .DEF directive
 D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\List\lcd.asm(1089): warning: Register r5 already defined by the .DEF directive
@@ -1559,9 +1559,9 @@ D:\courses\university\term 5\micro\project\Show_password-on-LCD\Debug\List\lcd.a
 0000de 940e 04e9 	CALL _delay_ms
                  ; 0000 00AD      }
                  ; 0000 00AE 
-                 ; 0000 00AF      delay_ms(25);
+                 ; 0000 00AF      delay_ms(200);
                  _0x7:
-0000e0 e1a9      	LDI  R26,LOW(25)
+0000e0 eca8      	LDI  R26,LOW(200)
 0000e1 e0b0      	LDI  R27,0
 0000e2 940e 04e9 	CALL _delay_ms
                  ; 0000 00B0       }
